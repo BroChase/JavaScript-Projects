@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Grading Papers</title>
+<style>
+table, th, td{
+	border: 1px solid black;
+	boarder-collapse: collapse;
+}
+th, td{
+	padding: 5px;
+	text-align: left;
+}
+</style>
+</head>
+<body>
+	<script>
+	var names = new Array();
+	var grades = new Array();
+	var ans = 'Y';
+	var table = document.createElement("table");
+	var table2 = document.createElement("table");
+	i = 0;
+	total = 0;
+	while (ans == 'Y'){
+		names[i] = prompt("Enter Student Name:");
+			grades[i] = prompt("What was their test grade?");
+			total += parseFloat(grades[i]);
+			ans = prompt("Do you have another grade? (Y/N)");
+			++i
+			}
+			for (j = 0; j < i; ++j){
+				//create new rows every itr
+				var row = table.insertRow(j);
+				//insert a cell 'col' to the row
+				var studName = row.insertCell(0);
+				//insert name of student into cell
+				studName.appendChild(document.createTextNode(names[j]));
+				//new cell for grade
+				var studgrade = row.insertCell(1);
+				//insert grade into cell
+				var rounding = Math.round(grades[j]);
+				studgrade.appendChild(document.createTextNode(rounding));
+			}
+			//create a new row for the average grades
+			var row = table.insertRow(j);
+			average = total / j;
+			//round avage to the nearest 1 decimal place for example 12.3 not 12.333333
+			var rounded = Math.round(average*10)/10;
+			var avg = 'Average';
+			var stdavg = row.insertCell(0);
+			stdavg.appendChild(document.createTextNode(avg));
+			var studavg = row.insertCell(1);
+			studavg.appendChild(document.createTextNode(rounded));
+			var row = table.insertRow(0);
+			var stn = row.insertCell(0);
+			stn.innerHTML = "Student Name";
+			var grd = row.insertCell(1);
+			grd.innerHTML = "Grade";
+			document.body.appendChild(table);
+			
+			var A = 0;
+			var B = 0;
+			var C = 0;
+			var D = 0;
+			var F = 0;
+			for (k = 0; k < i; ++k){
+				if (grades[k] >= 90){
+					++A;
+				}
+				else if(grades[k] >= 80 && grades[k] < 90){
+					++B;
+				}
+				else if(grades[k] >= 70 && grades[k] < 80){
+					++C;
+				}
+				else if(grades[k] >= 60 && grades[k] < 70){
+					++D;
+				}
+				else
+					++F;
+			}
+			var row = table2.insertRow(0);
+			var lgrade = row.insertCell(0);
+			lgrade.innerHTML = "Letter Grade";
+			var numberofScores = row.insertCell(1);
+			numberofScores.innerHTML = "Scores";
+			//Grades A row
+			var row = table2.insertRow(1);
+			var aGrade = row.insertCell(0);
+			aGrade.innerHTML = "A";
+			var aGradecount = row.insertCell(1);
+			aGradecount.innerHTML = A;
+			//Grades B row
+			var row = table2.insertRow(2);
+			var bGrade = row.insertCell(0);
+			bGrade.innerHTML = "B";
+			var bGradecount = row.insertCell(1);
+			bGradecount.innerHTML = B;
+			//Grades C row
+			var row = table2.insertRow(3);
+			var cGrade = row.insertCell(0);
+			cGrade.innerHTML = "C";
+			var cGradecount = row.insertCell(1);
+			cGradecount.innerHTML = C;
+			//Grades D row
+			var row = table2.insertRow(4);
+			var dGrade = row.insertCell(0);
+			dGrade.innerHTML = "D";
+			var dGradecount = row.insertCell(1);
+			dGradecount.innerHTML = D;
+			//Grades F row
+			var row = table2.insertRow(5);
+			var fGrade = row.insertCell(0);
+			fGrade.innerHTML = "F";
+			var fGradecount = row.insertCell(1);
+			fGradecount.innerHTML = F;
+			
+			document.body.appendChild(table2);
+	</script>
+</body>
+</html>
